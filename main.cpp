@@ -1,45 +1,44 @@
-#include <iostream>
-#include <string>
-using namespace std;
+#include <iostream> // Inclusão da Biblioteca iostream para receber input's e enviar output's.
+#include <string> // Inclusão da biblioteca que permite utilizar as strings.
+using namespace std; // Apenas uma forma de dizer que quero chamar a bibioteca com o nome std.
+
+//DEFINIÇÃO DAS CLASSES;
+class Cliente { //Classe cliente;
+private: // Atributos privados - significa que só podem ser acessador dentro da classe, nesse caso os atributos irão utilizá-los.
+    string nome; //Nome do cliente;
+    string telefone; //Telefone do cliente;
 
 
-class Cliente {
-private:
-    string nome;
-    string telefone;
-
-
-public:
-    Cliente(string nome, string telefone) {
-        this->nome = nome;
-        this->telefone = telefone;
+public: //Atributos públicos - podem ser utilizados fora da classe;
+    Cliente(string nome, string telefone) { //Aqui temos a utilização de um construtor que basicamente vai inicializar os atributos da classe com os valores passados como argumento.
+        this->nome = nome; //Utilizamos o "this" para dize que o "nome" do construtor é diferente do atributo privado "nome".
+        this->telefone = telefone; 
     }
 
 
-    string getNome() {
-        return nome;
+    string getNome() { // O método get é um método público usado para retornar o valor do atributo, nesse caso, o atributo "nome".
+        return nome; //Obs: ele serve no encapsulammento do código, pois você só pode acessar o atributo privado por meio dele.
     }
 
 
-    string getTelefone() {
+    string getTelefone() { //Nesse caso, a função foi utilizada para retornar o valor do atributo "telefone"
         return telefone;
     }
 
 
-    void mostrarInfo() {
+    void mostrarInfo() { //Função que serve apenas para imprimir na tela o nome do cliente e o número de telefone.
         cout << nome << " - " << telefone << endl;
     }
-};
+};//Encerramento da classe Cliente.
+
+class Servico { //Classe Serviço.
+private: //membros privados.
+    string nome; // Nome do Cliente.
+    int duracao;  // Duração do serviço em minutos.
+    double preco; // Valor do corte.
 
 
-class Servico {
-private:
-    string nome;
-    int duracao;  // Duração do serviço em minutos
-    double preco;
-
-
-public:
+public: // membros públicos.
     Servico(string nome, int duracao, double preco) {
         this->nome = nome;
         this->duracao = duracao;
