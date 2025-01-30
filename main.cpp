@@ -1,172 +1,160 @@
-#include <iostream> // Inclusão da Biblioteca iostream para receber input's e enviar output's.
-#include <string> // Inclusão da biblioteca que permite utilizar as strings.
-using namespace std; // Apenas uma forma de dizer que quero chamar a bibioteca com o nome std.
+#include <iostream>
+#include <string>
+#include <vector>  // Usamos o vetor dinâmico para armazenar os agendamentos, pois ele cresce conforme necessário.
+using namespace std;
 
-//DEFINIÇÃO DAS CLASSES;
-class Cliente { //Classe cliente;
-private: // Atributos privados - significa que só podem ser acessador dentro da classe, nesse caso os atributos irão utilizá-los.
-    string nome; //Nome do cliente;
-    string telefone; //Telefone do cliente;
+// Definindo a classe Cliente
+class Cliente {
+private:
+    string nome;  // Nome do cliente
+    string telefone;  // Telefone do cliente
 
+public:
+    // Construtor que inicializa o nome e o telefone do cliente
+    Cliente(string nome, string telefone) : nome(nome), telefone(telefone) {}
 
-public: //Atributos públicos - podem ser utilizados fora da classe;
-    Cliente(string nome, string telefone) { //Aqui temos a utilização de um construtor que basicamente vai inicializar os atributos da classe com os valores passados como argumento.
-        this->nome = nome; //Utilizamos o "this" para dize que o "nome" do construtor é diferente do atributo privado "nome".
-        this->telefone = telefone; 
-    }
-
-
-    string getNome() { // O método get é um método público usado para retornar o valor do atributo, nesse caso, o atributo "nome".
-        return nome; //Obs: ele serve no encapsulammento do código, pois você só pode acessar o atributo privado por meio dele.
-    }
-
-
-    string getTelefone() { //Nesse caso, a função foi utilizada para retornar o valor do atributo "telefone"
-        return telefone;
-    }
-
-
-    void mostrarInfo() { //Função que serve apenas para imprimir na tela o nome do cliente e o número de telefone.
-        cout << nome << " - " << telefone << endl;
-    }
-};//Encerramento da classe Cliente.
-
-class Servico { //Classe Serviço.
-private: //membros privados.
-    string nome; // Nome do Cliente.
-    int duracao;  // Duração do serviço em minutos.
-    double preco; // Valor do corte.
-
-
-public: // membros públicos.
-    Servico(string nome, int duracao, double preco) {
-        this->nome = nome;
-        this->duracao = duracao;
-        this->preco = preco;
-    }
-
-
-    string getNome() {
+    // Método para pegar o nome do cliente
+    string getNome() const {
         return nome;
     }
 
+    // Método para pegar o telefone do cliente
+    string getTelefone() const {
+        return telefone;
+    }
 
-    int getDuracao() {
+    // Método para mostrar as informações do cliente
+    void mostrarInfo() const {
+        cout << nome << " - " << telefone << endl;
+    }
+};
+
+// Definindo a classe Serviço
+class Servico {
+private:
+    string nome;  // Nome do serviço (ex: corte de cabelo)
+    int duracao;  // Duração do serviço em minutos
+    double preco;  // Preço do serviço
+
+public:
+    // Construtor que inicializa os dados do serviço
+    Servico(string nome, int duracao, double preco)
+        : nome(nome), duracao(duracao), preco(preco) {}
+
+    // Métodos para obter as informações do serviço
+    string getNome() const {
+        return nome;
+    }
+
+    int getDuracao() const {
         return duracao;
     }
 
-
-    double getPreco() {
+    double getPreco() const {
         return preco;
     }
 
-
-    void mostrarInfo() {
+    // Método para mostrar as informações do serviço
+    void mostrarInfo() const {
         cout << nome << " - Duração: " << duracao << " min, Preço: R$" << preco << endl;
     }
 };
 
-
+// Definindo a classe Agendamento
 class Agendamento {
 private:
-    Cliente cliente;
-    string dataHora;
-    Servico servico;
-
+    Cliente cliente;  // O cliente que fez o agendamento
+    string dataHora;  // Data e hora do agendamento
+    Servico servico;  // O serviço que o cliente agendou
 
 public:
-    Agendamento(Cliente cliente, string dataHora, Servico servico) : cliente(cliente), dataHora(dataHora), servico(servico) {}
+    // Construtor que inicializa o agendamento com o cliente, data/hora e o serviço
+    Agendamento(Cliente cliente, string dataHora, Servico servico)
+        : cliente(cliente), dataHora(dataHora), servico(servico) {}
 
-
-    void mostrarAgendamento() {
+    // Método para mostrar o agendamento
+    void mostrarAgendamento() const {
         cout << "Cliente: " << cliente.getNome() << ", Serviço: " << servico.getNome() << ", Data/Hora: " << dataHora << endl;
     }
 
-
-    string getDataHora() {
+    // Método para pegar a data e hora do agendamento
+    string getDataHora() const {
         return dataHora;
     }
 };
 
-
+// Definindo a classe Barbearia
 class Barbearia {
 private:
-    string nome;
-    string endereco;
-    Agendamento* agendamentos[10];  // Limite de 10 agendamentos (exemplo simples)
-    int quantidadeAgendamentos;
-
+    string nome;  // Nome da barbearia
+    string endereco;  // Endereço da barbearia
+    vector<Agendamento*> agendamentos;  // Vetor para armazenar os agendamentos de forma dinâmica
 
 public:
-    Barbearia(string nome, string endereco) {
-        this->nome = nome;
-        this->endereco = endereco;
-        quantidadeAgendamentos = 0;
-    }
+    // Construtor para inicializar a barbearia com nome e endereço
+    Barbearia(string nome, string endereco) : nome(nome), endereco(endereco) {}
 
-
-    bool verificarDisponibilidade(string dataHora) {
-        for (int i = 0; i < quantidadeAgendamentos; i++) {
-            if (agendamentos[i]->getDataHora() == dataHora) {
-                return false;  // Já existe um agendamento nesse horário
+    // Método para verificar se o horário está disponível para agendamento
+    bool verificarDisponibilidade(string dataHora) const {
+        for (const Agendamento* agendamento : agendamentos) {
+            if (agendamento->getDataHora() == dataHora) {
+                return false;  // Se já tiver um agendamento nesse horário, retorna falso
             }
         }
-        return true;
+        return true;  // Se não encontrar nenhum agendamento no horário, retorna verdadeiro
     }
 
-
+    // Método para agendar um serviço para um cliente
     void agendar(Cliente cliente, string dataHora, Servico servico) {
         if (!verificarDisponibilidade(dataHora)) {
             cout << "Horário " << dataHora << " já ocupado. Por favor, escolha outro horário." << endl;
-            return;
+            return;  // Se o horário estiver ocupado, não faz o agendamento
         }
 
-
+        // Se o horário estiver disponível, cria um novo agendamento e o adiciona no vetor
         Agendamento* agendamento = new Agendamento(cliente, dataHora, servico);
-        agendamentos[quantidadeAgendamentos++] = agendamento;
+        agendamentos.push_back(agendamento);
         cout << "Agendamento realizado para " << cliente.getNome() << " no horário " << dataHora << " para o serviço de " << servico.getNome() << "." << endl;
     }
 
+    // Método para listar todos os agendamentos
+    void listarAgendamentos() const {
+        for (const Agendamento* agendamento : agendamentos) {
+            agendamento->mostrarAgendamento();  // Mostra as informações de cada agendamento
+        }
+    }
 
-    void listarAgendamentos() {
-        for (int i = 0; i < quantidadeAgendamentos; i++) {
-            agendamentos[i]->mostrarAgendamento();
+    // Destruidor para liberar a memória dos agendamentos criados dinamicamente
+    ~Barbearia() {
+        for (Agendamento* agendamento : agendamentos) {
+            delete agendamento;  // Libera a memória de cada agendamento
         }
     }
 };
 
-
+// Função principal
 int main() {
-    // Criando clientes
+    // Criando dois clientes
     Cliente cliente1("João Silva", "1234-5678");
     Cliente cliente2("Maria Oliveira", "8765-4321");
 
-
-    // Criando serviços
+    // Criando dois serviços
     Servico corteCabelo("Corte de Cabelo", 30, 40.00);
     Servico barba("Barba", 20, 30.00);
 
-
-    // Criando barbearia
+    // Criando a barbearia
     Barbearia barbearia("Barbearia do João", "Rua das Flores, 123");
 
-
-    // Agendando serviços
-    barbearia.agendar(cliente1, "2025-01-20 10:00", corteCabelo);
-    barbearia.agendar(cliente2, "2025-01-20 10:30", barba);
-
+    // Agendando os serviços para os clientes
+    barbearia.agendar(cliente1, "2025-01-20 10:00", corteCabelo);  // Agendamento de corte de cabelo
+    barbearia.agendar(cliente2, "2025-01-20 10:30", barba);  // Agendamento de barba
 
     // Tentando agendar para o mesmo horário
-    barbearia.agendar(cliente1, "2025-01-20 10:00", barba);  // Deve avisar que o horário está ocupado
+    barbearia.agendar(cliente1, "2025-01-20 10:00", barba);  // Vai mostrar que o horário está ocupado
 
-
-    // Listando agendamentos
+    // Listando os agendamentos
     cout << "\nAgendamentos realizados:" << endl;
-    barbearia.listarAgendamentos();
-
+    barbearia.listarAgendamentos();  // Mostra todos os agendamentos realizados
 
     return 0;
 }
-
-
-
