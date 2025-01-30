@@ -1,4 +1,4 @@
-**Projeto de estrutura de dados orientada ao objeto**
+**Projeto de estrutura de dados orientada ao objeto - Silas Manoel Freitas da Silva (smfs@cin.ufpe.br)**
 
 Este código simula um sistema de agendamento de serviços em uma barbearia. O sistema permite registrar clientes, serviços, agendamentos e gerenciar uma barbearia, onde os clientes podem agendar serviços em horários disponíveis. A estrutura do código é organizada em quatro classes principais: Cliente, Servico, Agendamento e Barbearia. Vou explicar cada uma delas e como elas interagem.
 
