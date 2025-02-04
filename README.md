@@ -1,70 +1,44 @@
-# 📌 Nome do Projeto
+# 📌 scheduling_system
 
-> Descrição breve e objetiva sobre o projeto.
+> Construir um sistema de agendamento capaz de gereciar os atendimentos e serviços de uma barbearia, além de aplicar conceitos de orientação ao objeto.
 
 ## 📖 Sobre o Projeto
 
-Explique o propósito do projeto, sua motivação e o problema que ele resolve. Adicione detalhes relevantes sobre sua funcionalidade e público-alvo.
+Na barbearia que corto o cabelo, meu barbeiro sofre com um problema de agendamento, ele utiliza um caderno para fazer o controle de clientes e agendar horários, no entanto, esse sistema é muito ineficiente, sempre tem erros e fica uma aglomeração muito grande, gerando desconforto nos clientes, além disso sempre choca horário e ocorre uma desorganização. Nessa perspectiva, minha ideia é facilitar o gerenciamento dos clientes e dos serviços, bem como aplicar os conceitos de orientação ao objeto simultaneamente.
 
 ## 🚀 Tecnologias Utilizadas
 
-- [✔️] Tecnologia 1
-- [✔️] Tecnologia 2
-- [✔️] Tecnologia 3
+- [✔️] Git e Github para deixar o código organizado;
+- [✔️] Vs Code para editar e organizar o código;
+- [✔️] O GDB para compilar o código e debugar;
+- [✔️] O Canva para editar o documento.
 
 ## 🛠️ Instalação e Configuração
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/usuario/repo.git
+   git clone https://github.com/smfs18/scheduling_system/
    ```
 2. Acesse a pasta do projeto:
    ```bash
-   cd nome-do-projeto
+   cd scheduling_system
    ```
-3. Instale as dependências:
+3. Execute o projeto:
    ```bash
-   comando de instalação
+   ./
    ```
-4. Execute o projeto:
-   ```bash
-   comando de execução
-   ```
-
-## 🎮 Como Usar
-
-Explique como utilizar o projeto, incluindo exemplos de uso e prints, se possível.
 
 ## 📂 Estrutura do Projeto
 
 ```bash
 ├── src/
-│   ├── pasta1/
-│   ├── pasta2/
-│   └── main.py
-├── tests/
-├── docs/
+│   └── main.cpp
 ├── README.md
-└── requirements.txt
 ```
-
-## ✅ Contribuição
-
-Caso queira contribuir, siga os passos abaixo:
-
-1. Faça um fork do projeto
-2. Crie uma branch para a nova feature (`git checkout -b feature/minha-feature`)
-3. Commit suas alterações (`git commit -m 'Adicionei nova feature'`)
-4. Faça um push da branch (`git push origin feature/minha-feature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está licenciado sob a licença [Nome da Licença]. Para mais detalhes, consulte o arquivo LICENSE.
 
 ## 📞 Contato
 
 Caso tenha dúvidas ou sugestões, entre em contato:
-- 📧 Email: seu-email@email.com
-- 🔗 LinkedIn: [Seu LinkedIn](https://www.linkedin.com/in/seu-perfil)
-- 🐙 GitHub: [Seu GitHub](https://github.com/seu-usuario)
+- 📧 Email: smfs@cin.ufpe.br
+- 🔗 Youtube: https://youtu.be/EDRQEElGfpU?si=Fi7XFmtMTMpXkKu4
+- 🐙 GitHub: https://github.com/smfs18/scheduling_system
